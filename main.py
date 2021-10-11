@@ -40,7 +40,7 @@ class Soru:
     def NetSayisi(self):
 
         Yanlis_Net1 = int(self.Yanlis / 4)
-        self.ToplamNet = self.Dogru - self.Yanlis - Yanlis_Net1
+        self.ToplamNet = self.Dogru - Yanlis_Net1
 
         print("""
               ogrenciDogruSayisi : {}
