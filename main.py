@@ -3,7 +3,6 @@
 -ogrenciAdı
 -ogrenciSoyadı
 -ogrenciSınıf
-- 000
 
 bu sınıflardan nesne oluştururken parametre üreteceğiz
 """
