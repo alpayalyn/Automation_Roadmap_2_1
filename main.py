@@ -1,71 +1,55 @@
+# ogrenci bilgilerini iceren sınıf
+class studentClass:
+    def __init__(self, nameofStudent, surnameofStudent, classofStudent):
+        self.nameofStudent = nameofStudent
+        self.surnameofStudent = surnameofStudent
+        self.classofStudent = classofStudent
 
-"""Class oluştur, ogrenci sınıfı
--ogrenciAdı
--ogrenciSoyadı
--ogrenciSınıf
-
-bu sınıflardan nesne oluştururken parametre üreteceğiz
-"""
-"""
-Soru adında bir sınıf olacak
--NetSayısı() fonk olacak
--Hesapla() fonk olacak. Hesapla net sayısını alıp öğrencinin puanını alır Her net 2 puan
-"""
-"""
-En sonda öğrenci bilgileri ve puan konsolda gösterilecek
-"""
-
-class ogrenciSiniffi:
-
-    def __init__(self, ogrenciAdi, ogrenciSoyadi, ogrenciSinifi):
-        self.ogrenciAdi = ogrenciAdi
-        self.ogrenciSoyadi = ogrenciSoyadi
-        self.ogrenciSinifi = ogrenciSinifi
-
-    def bilgilerigöster(self):
+    def showInformation(self):
         print(""" 
-              ogrenciAdi : {}
-              ogrenciSoyadi : {}
+              nameofStudent : {}
+              surnameofStudent : {}
               ogrenciSinif : {}
-              """.format(self.ogrenciAdi, self.ogrenciSoyadi, self.ogrenciSinifi))
+              """.format(self.nameofStudent, self.surnameofStudent, self.classofStudent))
 
-class Soru:
+# net sayisini hesaplar, net sayisi ile total puanı da hesaplar
+class questions:
+    @staticmethod
+    def NetSayisi(correct, wrong):
 
-    def __init__(self, ogrencidogru, ogrenciyanlis):
-        self.Dogru = ogrencidogru
-        self.Yanlis = ogrenciyanlis
-        self.ToplamNet = 0
-        self.ToplamPuan = 0
+            wrongplus = int(wrong /4)
+            totalNet = correct - wrongplus
+            print("""
+                correctAnswerSayisi : {}
+                wrongAnswerSayisi : {}
+                ogrenciNetSayisi : {}
+                """.format(correct, wrong, totalNet))
+            return totalNet
 
-    def NetSayisi(self):
-
-        Yanlis_Net1 = int(self.Yanlis / 4)
-        self.ToplamNet = self.Dogru - Yanlis_Net1
-
-        print("""
-              ogrenciDogruSayisi : {}
-              ogrenciYanlisSayisi : {}
-              ogrenciNetSayisi : {}
-              """.format(self.Dogru, self.Yanlis, self.ToplamNet))
-
-    def Calculate(self):
-
-        self.ToplamPuan = self.ToplamNet * 2
+    @staticmethod
+    def calculate(totalNet):
+        totalPoints = totalNet * 2
         print(""" 
-              ogrenciToplamPuani : {}
-              """.format(self.ToplamPuan))
+              ogrencitotalPointsi : {}
+              """.format(totalPoints))
 
+studentName = input("Öğrenci ismi giriniz:")
+studentSurname = input("Öğrenci soyismi giriniz:")
+studentClassLocal = input("Öğrenci sinifini giriniz:")
 
-ogrenciismi = input("Öğrenci ismi giriniz:")
-ogrencisoyismi = input("Öğrenci soyismi giriniz:")
-ogrencisinifi = input("Öğrenci sinifini giriniz:")
-ogrencidogru = int(input("Öğrenci doğru sayısını giriniz:"))
-ogrenciyanlis = int(input("Öğrenci yanlış sayısını giriniz:"))
+# toplam 50 soru mu kontrolü
+while True:
+    correctAnswer = int(input("Öğrenci doğru sayısını giriniz:"))
+    wrongAnswer = int(input("Öğrenci yanlış sayısını giriniz:"))
 
+    if(correctAnswer + wrongAnswer != 50):
+        print("Lütfen yanlış ve doğru toplamı 50 olacak şekilde doğru yanlış sayısını giriniz.")
+    else:
+        break
 
-ogrenci1 = ogrenciSiniffi(ogrenciismi, ogrencisoyismi, ogrencisinifi)
-ogrenci1.bilgilerigöster()
+studentOutput = studentClass(studentName, studentSurname, studentClassLocal)
+studentOutput.showInformation()
 
-ogrenci2 = Soru(ogrencidogru, ogrenciyanlis)
-ogrenci2.NetSayisi()
-ogrenci2.Calculate()
+questionOutputs = questions()
+totalNets = questionOutputs.NetSayisi(correctAnswer, wrongAnswer)
+questionOutputs.calculate(totalNets)
